@@ -1050,5 +1050,15 @@
         switchTab(state.activeTab);
         render();
     </script>
+    <!-- Script to enable offline mode -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(reg => console.log('Offline service worker active!', reg.scope))
+                    .catch(err => console.error('Service Worker failed:', err));
+            });
+        }
+    </script>
 </body>
 </html>
